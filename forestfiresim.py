@@ -22,6 +22,21 @@ TREE = 'A'
 FIRE = '@'
 EMPTY = ' '
 
+# ==========================================================
+# Module 6 TODO
+# ----------------------------------------------------------
+# Add a new WATER constant.
+#
+# Suggested character:
+# WATER = '~'
+#
+# The lake should:
+#   - Be placed roughly in the center of the forest.
+#   - Display in BLUE.
+#   - Never change once created.
+#   - Act as a permanent firebreak that fire cannot cross.
+# ==========================================================
+
 # (!) Try changing these settings to anything between 0.0 and 1.0:
 INITIAL_TREE_DENSITY = 0.20  # Amount of forest that starts with trees.
 GROW_CHANCE = 0.01  # Chance a blank space turns into a tree.
@@ -33,6 +48,18 @@ PAUSE_LENGTH = 0.5
 
 def main():
     forest = createNewForest()
+    # ======================================================
+    # Module 6 TODO
+    # ------------------------------------------------------
+    # After the forest is created, add a lake near the
+    # center of the forest before the simulation begins.
+    #
+    # Suggested location:
+    #     createLake(forest)
+    #
+    # The lake should use the WATER character (~) and remain
+    # unchanged throughout the simulation.
+    # ======================================================
     bext.clear()
 
     while True:  # Main program loop.
@@ -48,7 +75,16 @@ def main():
                     # If we've already set nextForest[(x, y)] on a
                     # previous iteration, just do nothing here:
                     continue
-
+                # ==================================================
+                # Module 6 TODO
+                # Check if the current location contains WATER.
+                # If so:
+                # Copy the water directly into nextForest.
+                # Do NOT allow water to become fire.
+                # Skip all remaining fire logic.
+                # This matches the revised flowchart decision:
+                # "Is location water (~)?"
+                # ==================================================
                 if ((forest[(x, y)] == EMPTY)
                     and (random.random() <= GROW_CHANCE)):
                     # Grow a tree in this empty space.
@@ -58,6 +94,12 @@ def main():
                     # Lightning sets this tree on fire.
                     nextForest[(x, y)] = FIRE
                 elif forest[(x, y)] == FIRE:
+                    # ==================================================
+                    # Module 6 TODO
+                    # Modify the fire spread logic so that fire cannot
+                    # spread into or across WATER cells.
+                    # Neighbor checks should ignore lake locations.
+                    # ==================================================
                     # This tree is currently burning.
                     # Loop through all the neighboring spaces:
                     for ix in range(-1, 2):
@@ -84,6 +126,14 @@ def createNewForest():
                 forest[(x, y)] = TREE  # Start as a tree.
             else:
                 forest[(x, y)] = EMPTY  # Start as an empty space.
+                    
+    # ======================================================
+    # Module 6 TODO
+    # After creating the initial forest, add a permanent
+    # lake near the center of the display.
+    # The lake should overwrite any trees or empty spaces
+    # in that area.
+    # ======================================================
     return forest
 
 
@@ -92,6 +142,15 @@ def displayForest(forest):
     bext.goto(0, 0)
     for y in range(forest['height']):
         for x in range(forest['width']):
+             # ==================================================
+            # Module 6 TODO
+            # Add a display case for WATER.
+            # Example:
+            #     bext.fg('blue')
+            #     print(WATER, end='')
+            # Water should display in blue while trees remain
+            # green and fire remains red.
+            # ==================================================
             if forest[(x, y)] == TREE:
                 bext.fg('green')
                 print(TREE, end='')
@@ -109,6 +168,17 @@ def displayForest(forest):
 
 
 # If this program was run (instead of imported), run the game:
+# ==========================================================
+# Module 6 Planned Changes
+# 1. Add a WATER (~) feature displayed in blue.
+# 2. Place the lake roughly in the center of the forest.
+# 3. Water cells become permanent terrain.
+# 4. Water cannot ignite or burn.
+# 5. Fire cannot spread into or across lake cells.
+# 6. Update display logic to render water in blue.
+# These planned modifications correspond to the revised
+# Module 6 flowchart.
+# ==========================================================
 if __name__ == '__main__':
     try:
         main()
