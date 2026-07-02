@@ -21,15 +21,13 @@ HEIGHT = 22
 TREE = 'A'
 FIRE = '@'
 EMPTY = ' '
-
+WATER = '~'   # Module 6: Lake cells
 # ==========================================================
 # Module 6 TODO
 # ----------------------------------------------------------
 # Add a new WATER constant.
-#
 # Suggested character:
 # WATER = '~'
-#
 # The lake should:
 #   - Be placed roughly in the center of the forest.
 #   - Display in BLUE.
@@ -128,16 +126,30 @@ def createNewForest():
                 forest[(x, y)] = TREE  # Start as a tree.
             else:
                 forest[(x, y)] = EMPTY  # Start as an empty space.
-                    
-    # ======================================================
-    # Module 6 TODO
-    # After creating the initial forest, add a permanent
-    # lake near the center of the display.
-    # The lake should overwrite any trees or empty spaces
-    # in that area.
-    # ======================================================
-    return forest
+    return forest 
+               
+# ======================================================
+# Module 6 TODO completed (Timothy Martin)
+# After creating the initial forest, add a permanent
+# lake near the center of the display.
+# The lake should overwrite any trees or empty spaces
+# in that area.
+# ======================================================
 
+# ==========================================================
+# Module 6: Create a lake in the center of the forest.
+# Creates a rectangular lake roughly in the center of the
+# forest. The lake overwrites any trees or empty spaces and
+# serves as a permanent water feature.
+# ==========================================================
+def createLake(forest):
+    """Creates a lake roughly in the center of the forest."""
+    centerX = WIDTH // 2
+    centerY = HEIGHT // 2
+    # Create an 11 x 5 rectangular lake.
+    for x in range(centerX - 5, centerX + 6):
+        for y in range(centerY - 2, centerY + 3):
+            forest[(x, y)] = WATER
 
 def displayForest(forest):
     """Display the forest data structure on the screen."""
@@ -160,8 +172,8 @@ def displayForest(forest):
                 bext.fg('red')
                 print(FIRE, end='')
             elif forest[(x, y)] == WATER:
-    		bext.fg('blue')
-   	        print(WATER, end='')            	
+                bext.fg('blue')
+                print(WATER, end='')
             elif forest[(x, y)] == EMPTY:
                 print(EMPTY, end='')
         print()
