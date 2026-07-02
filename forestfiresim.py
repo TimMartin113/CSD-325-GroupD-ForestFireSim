@@ -76,7 +76,7 @@ def main():
                     # previous iteration, just do nothing here:
                     continue
                 # ==================================================
-                # Module 6 TODO
+                # Module 6 TODO completed (Roxanne Buenaventura)
                 # Check if the current location contains WATER.
                 # If so:
                 # Copy the water directly into nextForest.
@@ -85,6 +85,10 @@ def main():
                 # This matches the revised flowchart decision:
                 # "Is location water (~)?"
                 # ==================================================
+                if ((forest[(x, y)] == WATER)):
+                    # Copy the water directly into nextForest.
+                    nextForest[(x, y)] = WATER  
+                    continue # Skip all remaining fire logic.
                 if ((forest[(x, y)] == EMPTY)
                     and (random.random() <= GROW_CHANCE)):
                     # Grow a tree in this empty space.
@@ -95,7 +99,7 @@ def main():
                     nextForest[(x, y)] = FIRE
                 elif forest[(x, y)] == FIRE:
                     # ==================================================
-                    # Module 6 TODO
+                    # Module 6 TODO completed (Roxanne Buenaventura)
                     # Modify the fire spread logic so that fire cannot
                     # spread into or across WATER cells.
                     # Neighbor checks should ignore lake locations.
@@ -104,6 +108,9 @@ def main():
                     # Loop through all the neighboring spaces:
                     for ix in range(-1, 2):
                         for iy in range(-1, 2):
+                            # Ignore  water cells when checking for fire spread.
+                            if forest.get((x + ix, y + iy)) == WATER:
+                                continue  # Skip water cells.
                             # Fire spreads to neighboring trees:
                             if forest.get((x + ix, y + iy)) == TREE:
                                 nextForest[(x + ix, y + iy)] = FIRE
