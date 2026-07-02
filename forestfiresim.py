@@ -48,6 +48,7 @@ PAUSE_LENGTH = 0.5
 
 def main():
     forest = createNewForest()
+    createLake(forest)  # Module 6: Add the lake before the simulation starts.
     # ======================================================
     # Module 6 TODO
     # ------------------------------------------------------
@@ -157,7 +158,10 @@ def displayForest(forest):
             elif forest[(x, y)] == FIRE:
                 bext.fg('red')
                 print(FIRE, end='')
-          	
+            elif forest[(x, y)] == WATER:
+    		bext.fg('blue')
+   	        print(WATER, end='')
+            #added water blue feature here	
             elif forest[(x, y)] == EMPTY:
                 print(EMPTY, end='')
         print()
