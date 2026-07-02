@@ -48,18 +48,19 @@ PAUSE_LENGTH = 0.5
 
 def main():
     forest = createNewForest()
+    # # Module 6 TODO completed (Wendy Bronson)
+    # Call createLake() immediately after the forest is initialized.
+    # Keeping the lake creation in its own function makes the code
+    # easier to read, maintain, and update later. This follows the
+    # ideas from The Pragmatic Programmer about separating
+    # responsibilities and writing code that is easier to change.
     createLake(forest)  # Module 6: Add the lake before the simulation starts.
     # ======================================================
-    # Module 6 TODO
+    # Module 6 TODO COMPLETED (Wendy Bronson)
     # ------------------------------------------------------
-    # After the forest is created, add a lake near the
-    # center of the forest before the simulation begins.
-    #
-    # Suggested location:
-    #     createLake(forest)
-    #
-    # The lake should use the WATER character (~) and remain
-    # unchanged throughout the simulation.
+   
+    # # Lake creation is called after the forest is initialized.
+    # See comments above for implementation details.
     # ======================================================
     bext.clear()
 
@@ -143,15 +144,15 @@ def displayForest(forest):
     bext.goto(0, 0)
     for y in range(forest['height']):
         for x in range(forest['width']):
-             # ==================================================
-            # Module 6 TODO
-            # Add a display case for WATER.
-            # Example:
-            #     bext.fg('blue')
-            #     print(WATER, end='')
-            # Water should display in blue while trees remain
-            # green and fire remains red.
-            # ==================================================
+             
+    # ==========================================================
+    # Module 6 TODO completed (Wendy Bronson)
+    # ----------------------------------------------------------
+    # Display WATER cells in blue so they are visually different
+    # from trees and fire. Keeping each terrain type in its own
+    # display case improves readability and makes the code easier
+    # to maintain.
+    # ==========================================================
             if forest[(x, y)] == TREE:
                 bext.fg('green')
                 print(TREE, end='')
@@ -160,8 +161,7 @@ def displayForest(forest):
                 print(FIRE, end='')
             elif forest[(x, y)] == WATER:
     		bext.fg('blue')
-   	        print(WATER, end='')
-            #added water blue feature here	
+   	        print(WATER, end='')            	
             elif forest[(x, y)] == EMPTY:
                 print(EMPTY, end='')
         print()
