@@ -23,25 +23,21 @@ FIRE = '@'
 EMPTY = ' '
 WATER = '~'   # Module 6: Lake cells
 # ==========================================================
-# Module 6 TODO
+# Module 6 TODO completed (Timothy Martin)
 # ----------------------------------------------------------
-# Add a new WATER constant.
-# Suggested character:
-# WATER = '~'
-# The lake should:
-#   - Be placed roughly in the center of the forest.
-#   - Display in BLUE.
-#   - Never change once created.
-#   - Act as a permanent firebreak that fire cannot cross.
+# ==========================================================
+# Module 6 completed
+# Added the WATER constant (~) for the permanent lake.
+# Water will be displayed in blue and acts as a firebreak.
 # ==========================================================
 
 # (!) Try changing these settings to anything between 0.0 and 1.0:
 INITIAL_TREE_DENSITY = 0.20  # Amount of forest that starts with trees.
-GROW_CHANCE = 0.01  # Chance a blank space turns into a tree.
-FIRE_CHANCE = 0.01  # Chance a tree is hit by lightning & burns.
+GROW_CHANCE = 0.02  # Chance a blank space turns into a tree.
+FIRE_CHANCE = 0.02  # Chance a tree is hit by lightning & burns.
 
 # (!) Try setting the pause length to 1.0 or 0.0:
-PAUSE_LENGTH = 0.5
+PAUSE_LENGTH = 1.0
 
 
 def main():
@@ -137,18 +133,13 @@ def createNewForest():
                
 # ======================================================
 # Module 6 TODO completed (Timothy Martin)
-# After creating the initial forest, add a permanent
-# lake near the center of the display.
-# The lake should overwrite any trees or empty spaces
-# in that area.
+# ------------------------------------------------------
+# dded the createLake() function, which creates a permanent
+# rectangular lake near the center of the forest.
+# The lake overwrites any trees or empty spaces and serves
+# as a firebreak.
 # ======================================================
 
-# ==========================================================
-# Module 6: Create a lake in the center of the forest.
-# Creates a rectangular lake roughly in the center of the
-# forest. The lake overwrites any trees or empty spaces and
-# serves as a permanent water feature.
-# ==========================================================
 def createLake(forest):
     """Creates a lake roughly in the center of the forest."""
     centerX = WIDTH // 2
